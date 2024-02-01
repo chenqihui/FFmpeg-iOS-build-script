@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # directories
-FF_VERSION="4.3.1"
+FF_VERSION="6.0"
 #FF_VERSION="snapshot-git"
 if [[ $FFMPEG_VERSION != "" ]]; then
   FF_VERSION=$FFMPEG_VERSION
 fi
-SOURCE="ffmpeg-$FF_VERSION"
+SOURCE="../FFmpeg"
 FAT="FFmpeg-iOS"
 
 SCRATCH="scratch"
@@ -19,7 +19,7 @@ THIN=`pwd`/"thin"
 #FDK_AAC=`pwd`/../fdk-aac-build-script-for-iOS/fdk-aac-ios
 
 CONFIGURE_FLAGS="--enable-cross-compile --disable-debug --disable-programs \
-                 --disable-doc --enable-pic"
+                 --disable-doc --enable-pic --disable-audiotoolbox --target-os=darwin"
 
 if [ "$X264" ]
 then
@@ -34,12 +34,12 @@ fi
 # avresample
 #CONFIGURE_FLAGS="$CONFIGURE_FLAGS --enable-avresample"
 
-ARCHS="arm64 armv7 x86_64 i386"
+ARCHS="arm64"
 
 COMPILE="y"
 LIPO="y"
 
-DEPLOYMENT_TARGET="8.0"
+DEPLOYMENT_TARGET="13.0"
 
 if [ "$*" ]
 then
@@ -83,8 +83,9 @@ then
 	if [ ! -r $SOURCE ]
 	then
 		echo 'FFmpeg source not found. Trying to download...'
-		curl http://www.ffmpeg.org/releases/$SOURCE.tar.bz2 | tar xj \
-			|| exit 1
+		# curl https://www.ffmpeg.org/releases/$SOURCE.tar.bz2 | tar xj \
+			# || exit 1
+		exit 1
 	fi
 
 	CWD=`pwd`
