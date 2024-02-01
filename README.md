@@ -1,3 +1,21 @@
+# 记录
+
+1、--disable-audiotoolbox
+
+* [2023 最新iOS 开发之编译ffmpeg 及报错解析](https://www.jianshu.com/p/f5265b062f54)
+
+2、iOS13
+
+3、cputype (16777228) does not match previous archive members cputype (16777223)
+
+??
+
+~~~
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib: archive member: FFmpegx86_64.a(bin2c_host.o) cputype (16777228) does not match previous archive members cputype (16777223) (all members must match)
+fatal error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo: archive member FFmpegx86_64.a(bin2c_host.o) cputype (16777228) and cpusubtype (0) does not match previous archive members cputype (16777223) and cpusubtype (3) (all members must match)
+~~~
+
+
 # FFmpeg iOS build script
 
 See the following repository for Swift package, .xcframeworks and more:
